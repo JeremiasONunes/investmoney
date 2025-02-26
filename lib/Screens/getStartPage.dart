@@ -39,27 +39,6 @@ class StartPage extends StatelessWidget {
             ),
 
             const Spacer(flex: 2),
-
-            // Botão com apenas o ícone do Google
-            SizedBox(
-              width: 50,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () => _controller.loginWithGoogle(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(10),
-                ),
-                child: Image.asset(
-                  'assets/images/logo-google.png',
-                  width: 24,
-                  height: 24,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
             // Botão de login padrão
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
@@ -79,7 +58,25 @@ class StartPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
+            // Botão com apenas o ícone do Google
+            SizedBox(
+              width: 50,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => _controller.loginWithGoogle(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(10),
+                ),
+                child: Image.asset(
+                  'assets/images/logo-google.png',
+                  width: 24,
+                  height: 24,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             // Texto "Não possui conta? REGISTRAR"
             GestureDetector(
               onTap: () => _controller.navigateToRegister(context),
