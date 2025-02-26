@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:investmoney/Screens/loginController.dart'; // Certifique-se de importar o controlador
 import 'package:investmoney/common/constants/appColors.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  final StartController _controller =
+      StartController(); // Criando uma instância do controlador
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,10 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // Aqui você pode implementar a lógica de login
+                  print("Login button pressed");
+                },
                 child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18, color: Colors.white),
@@ -106,7 +112,10 @@ class LoginPage extends StatelessWidget {
               width: 50,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _controller
+                      .loginWithGoogle(); // Chama o método de login com Google
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   shape: const CircleBorder(),
@@ -124,7 +133,11 @@ class LoginPage extends StatelessWidget {
 
             // Texto "Não possui conta? REGISTRAR"
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _controller.navigateToRegisterPage(
+                  context,
+                ); // Navega para a página de registro
+              },
               child: const Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",

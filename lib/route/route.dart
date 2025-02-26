@@ -9,8 +9,8 @@ import 'package:investmoney/Screens/splashPage.dart';
 class AppRoutes {
   static final Map<String, WidgetBuilder> routes = {
     '/': (context) => const SplashPage(),
-    '/login': (context) => const LoginPage(),
-    '/home': (context) => const HomePage(),
+    '/login': (context) => LoginPage(),
+    '/home': (context) => HomePage(),
     '/getStart': (context) => StartPage(),
     '/register': (context) => RegisterPage(),
   };
