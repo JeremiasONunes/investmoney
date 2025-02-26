@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:investmoney/common/constants/appColors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -6,21 +7,142 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [AppColors.TextColor, AppColors.PrimaryColorDark],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Email'),
+          children: [
+            const Spacer(flex: 2),
+
+            // Logo
+            Image.asset('assets/images/logo.png', width: 150, height: 150),
+            const SizedBox(height: 5),
+
+            // Texto "InvestMoney"
+            const Text(
+              'InvestMoney',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
+
+            const Spacer(flex: 2),
+
+            // Campo de Email
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: AppColors.PrimaryColorDark,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: const Text('Login')),
+
+            // Campo de Senha
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: AppColors.PrimaryColorDark,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                obscureText: true,
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            // Botão de Login
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.PrimaryColorDark,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  'Login',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Botão de Login com Google
+            SizedBox(
+              width: 50,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(10),
+                ),
+                child: Image.asset(
+                  'assets/images/logo-google.png',
+                  width: 24,
+                  height: 24,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Texto "Não possui conta? REGISTRAR"
+            GestureDetector(
+              onTap: () {},
+              child: const Text.rich(
+                TextSpan(
+                  text: "Don't have an account? ",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  children: [
+                    TextSpan(
+                      text: "REGISTER",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const Spacer(flex: 2),
           ],
         ),
       ),
