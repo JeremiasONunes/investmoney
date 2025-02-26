@@ -7,10 +7,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Instanciando o SplashController
     final splashController = SplashController();
-
-    // Chama a função de navegação para a próxima página
     splashController.navigateToLogin(context);
 
     return Scaffold(
