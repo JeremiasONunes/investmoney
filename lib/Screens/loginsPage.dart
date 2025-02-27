@@ -1,14 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:investmoney/Screens/loginController.dart'; // Certifique-se de importar o controlador
+import 'package:investmoney/Screens/loginController.dart';
 import 'package:investmoney/common/constants/appColors.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-  final StartController _controller =
-      StartController(); // Criando uma instância do controlador
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage>
+    with AutomaticKeepAliveClientMixin {
+  final LoginController _controller = LoginController();
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    // Caso precise de alguma inicialização extra no controlador
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -23,12 +46,8 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
-
-            // Logo
             Image.asset('assets/images/logo.png', width: 150, height: 150),
             const SizedBox(height: 5),
-
-            // Texto "InvestMoney"
             const Text(
               'InvestMoney',
               style: TextStyle(
@@ -37,49 +56,20 @@ class LoginPage extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-
             const Spacer(flex: 2),
 
-            // Campo de Email
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: AppColors.PrimaryColorDark,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+            _buildTextField(
+              controller: _controller.emailController,
+              label: 'Email',
+              icon: Icons.email,
             ),
             const SizedBox(height: 20),
 
-            // Campo de Senha
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: AppColors.PrimaryColorDark,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-                obscureText: true,
-              ),
+            _buildTextField(
+              controller: _controller.passwordController,
+              label: 'Password',
+              icon: Icons.lock,
+              obscureText: true,
             ),
             const SizedBox(height: 30),
 
@@ -94,17 +84,13 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: () {
-                  // Aqui você pode implementar a lógica de login
-                  print("Login button pressed");
-                },
+                onPressed: _controller.login,
                 child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
 
             // Botão de Login com Google
@@ -112,10 +98,7 @@ class LoginPage extends StatelessWidget {
               width: 50,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  _controller
-                      .loginWithGoogle(); // Chama o método de login com Google
-                },
+                onPressed: _controller.loginWithGoogle,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   shape: const CircleBorder(),
@@ -128,16 +111,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
 
-            // Texto "Não possui conta? REGISTRAR"
+            // Link para registro
             GestureDetector(
-              onTap: () {
-                _controller.navigateToRegisterPage(
-                  context,
-                ); // Navega para a página de registro
-              },
+              onTap: () => _controller.navigateToRegisterPage(context),
               child: const Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
@@ -154,9 +132,33 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const Spacer(flex: 2),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+    bool obscureText = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 30),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          labelText: label,
+          prefixIcon: Icon(icon, color: AppColors.PrimaryColorDark),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
     );

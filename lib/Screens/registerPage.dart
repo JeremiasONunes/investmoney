@@ -11,12 +11,16 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends State<RegisterPage>
+    with AutomaticKeepAliveClientMixin {
   final RegisterController _controller = RegisterController();
   final _dateMask = MaskTextInputFormatter(
     mask: '##/##/####',
     filter: {"#": RegExp(r'[0-9]')},
   );
+
+  @override
+  bool get wantKeepAlive => true; // Mantém o estado ao sair/voltar para a tela
 
   @override
   void dispose() {
@@ -26,6 +30,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Necessário para o mixin funcionar
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,

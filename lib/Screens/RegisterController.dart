@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
 
-class RegisterController with ChangeNotifier {
+class RegisterController {
   final formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
   final TextEditingController cpfController = TextEditingController();
 
-  bool _isSubmitting = false;
-  bool get isSubmitting => _isSubmitting;
-
-  bool validateForm() {
-    return formKey.currentState?.validate() ?? false;
-  }
-
-  void setSubmitting(bool value) {
-    _isSubmitting = value;
-    notifyListeners();
-  }
-
-  Future<void> submitForm() async {
-    if (validateForm()) {
-      setSubmitting(true);
-      await Future.delayed(Duration(seconds: 2)); // Simula uma requisição
+  void submitForm() {
+    if (formKey.currentState?.validate() ?? false) {
+      // Lógica para salvar ou enviar os dados
+      print('Form submitted successfully');
       print('Email: ${emailController.text}');
-      print('Full Name: ${nameController.text}');
-      print('Date of Birth: ${dobController.text}');
+      print('Name: ${nameController.text}');
+      print('DOB: ${dobController.text}');
       print('CPF: ${cpfController.text}');
-      setSubmitting(false);
     }
   }
 
