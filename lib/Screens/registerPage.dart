@@ -20,7 +20,7 @@ class _RegisterPageState extends State<RegisterPage>
   );
 
   @override
-  bool get wantKeepAlive => true; // Mantém o estado ao sair/voltar para a tela
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -73,6 +73,7 @@ class _RegisterPageState extends State<RegisterPage>
                   _controller.emailController,
                   'Email',
                   Icons.email,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
@@ -168,6 +169,15 @@ class _RegisterPageState extends State<RegisterPage>
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please enter your $label';
+          }
+          if (label == "Email" &&
+              !RegExp(
+                r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$",
+              ).hasMatch(value)) {
+            return 'Please enter a valid email';
+          }
+          if (label == "CPF" && value.length != 11) {
+            return 'Please enter a valid CPF';
           }
           return null;
         },

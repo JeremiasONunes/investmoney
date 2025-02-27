@@ -19,12 +19,11 @@ class _LoginPageState extends State<LoginPage>
   @override
   void initState() {
     super.initState();
-    // Caso precise de alguma inicialização extra no controlador
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller.dispose(); // Chamando dispose para limpar os controladores
     super.dispose();
   }
 
@@ -84,7 +83,7 @@ class _LoginPageState extends State<LoginPage>
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: _controller.login,
+                onPressed: _controller.login, // Chama o método login
                 child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18, color: Colors.white),
@@ -98,7 +97,9 @@ class _LoginPageState extends State<LoginPage>
               width: 50,
               height: 50,
               child: ElevatedButton(
-                onPressed: _controller.loginWithGoogle,
+                onPressed:
+                    _controller
+                        .loginWithGoogle, // Chama o método login com Google
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   shape: const CircleBorder(),
@@ -115,7 +116,10 @@ class _LoginPageState extends State<LoginPage>
 
             // Link para registro
             GestureDetector(
-              onTap: () => _controller.navigateToRegisterPage(context),
+              onTap:
+                  () => _controller.navigateToRegisterPage(
+                    context,
+                  ), // Navega para a tela de registro
               child: const Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
