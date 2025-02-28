@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:investmoney/common/constants/appColors.dart';
-import 'package:investmoney/Screens/getStartController.dart';
+import 'package:investmoney/controllers/getStartController.dart';
 
 class StartPage extends StatelessWidget {
   final StartController _controller = StartController();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:investmoney/Screens/loginController.dart';
+import 'package:investmoney/controllers/loginController.dart';
 import 'package:investmoney/common/constants/appColors.dart';
 
 class LoginPage extends StatefulWidget {

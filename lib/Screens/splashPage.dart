@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:investmoney/Screens/splashController.dart';
+import 'package:investmoney/controllers/splashController.dart';
 import 'package:investmoney/common/constants/appColors.dart';
 
 class SplashPage extends StatelessWidget {

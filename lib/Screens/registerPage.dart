@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:investmoney/Screens/registerController.dart';
+import 'package:investmoney/controllers/registerController.dart';
 import 'package:investmoney/common/constants/appColors.dart';
 
 class RegisterPage extends StatefulWidget {
